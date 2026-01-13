@@ -1,0 +1,28 @@
+.quick-delete-btn {
+    background: transparent;
+    /* Uses YT's native secondary text color variable */
+    color: var(--yt-spec-text-secondary, #aaa);
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    margin-right: 8px;
+    padding: 4px 8px;
+    border-radius: 50%;
+    transition: background 0.2s, color 0.2s;
+    /* Ensures the button stays centered vertically in the row */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quick-delete-btn:hover {
+    /* This variable automatically switches between light/dark grey based on theme */
+    background: var(--yt-spec-badge-chip-background, rgba(0, 0, 0, 0.05));
+    color: #ff4e4e;
+}
+
+/* Optional: adjust the 'X' size slightly to match YT icon weights */
+.quick-delete-btn {
+    font-family: "Roboto", "Arial", sans-serif;
+    font-weight: 300;
+}
