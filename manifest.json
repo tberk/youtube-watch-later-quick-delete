@@ -5,7 +5,7 @@
   "icons": {
     "128": "assets/logo-128.png"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "content_scripts": [
     {
       "matches": [
