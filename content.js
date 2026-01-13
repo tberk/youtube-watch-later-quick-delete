@@ -2,10 +2,10 @@
 async function removeVideo(row) {
   // 1. Click the "three dots" action menu button
   const menuButton = row.querySelector('#button.ytd-menu-renderer');
+  if (!menuButton) return; // Safety check
   menuButton.click();
 
-  // 2. Wait a moment for the popup menu to appear in the DOM
-  // YouTube renders the menu at the end of <body>, not inside the row
+  // 2. Wait a moment for the popup menu to appear
   setTimeout(() => {
     const menuItems = document.querySelectorAll('ytd-menu-service-item-renderer');
     const removeBtn = Array.from(menuItems).find(item =>
@@ -15,11 +15,14 @@ async function removeVideo(row) {
     if (removeBtn) {
       removeBtn.click();
     }
-  }, 50);
+  }, 100); // Increased slightly to 100ms to be safe
 }
 
 // Function to inject the button
 function injectButtons() {
+  // STRICT CHECK: Only run if we are strictly on the Watch Later playlist
+  if (!window.location.href.includes('list=WL')) return;
+
   const videoRows = document.querySelectorAll('ytd-playlist-video-renderer:not(.quick-del-added)');
 
   videoRows.forEach(row => {
@@ -39,13 +42,13 @@ function injectButtons() {
         removeVideo(row);
       });
 
-      // Insert between index and thumbnail
       indexContainer.after(btn);
     }
   });
 }
 
 // Observe changes for infinite scrolling/dynamic loading
+// We observe document.body to catch navigation changes (SPA) and new rows
 const observer = new MutationObserver(() => {
   injectButtons();
 });
