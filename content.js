@@ -7,15 +7,22 @@ async function removeVideo(row) {
 
   // 2. Wait a moment for the popup menu to appear
   setTimeout(() => {
+    // We select all menu items
     const menuItems = document.querySelectorAll('ytd-menu-service-item-renderer');
-    const removeBtn = Array.from(menuItems).find(item =>
-      item.textContent.trim().toLowerCase().includes('remove from')
-    );
+
+    // The start of the unique "Trash Can" SVG path data
+    const TRASH_ICON_PATH_START = "M19 3h-4V2a1 1 0 00-1-1h-4a1 1 0 00-1 1v1H5";
+
+    const removeBtn = Array.from(menuItems).find(item => {
+      const path = item.querySelector('path');
+      // Check if the item has an icon and if that icon matches our trash can
+      return path && path.getAttribute('d').startsWith(TRASH_ICON_PATH_START);
+    });
 
     if (removeBtn) {
       removeBtn.click();
     }
-  }, 100); // Increased slightly to 100ms to be safe
+  }, 100);
 }
 
 // Function to inject the button
@@ -48,7 +55,6 @@ function injectButtons() {
 }
 
 // Observe changes for infinite scrolling/dynamic loading
-// We observe document.body to catch navigation changes (SPA) and new rows
 const observer = new MutationObserver(() => {
   injectButtons();
 });
