@@ -7,9 +7,17 @@
 
 A lightweight browser extension designed to streamline your YouTube "Watch Later" management.
 
-Skip the tedious two-click menu process and remove videos with a single click. This extension adds a dedicated **(X)** button directly into the video row.
+<div align="center">
+    <a href="https://chromewebstore.google.com/detail/watch-later-quick-delete/lejcgdjekdikgfoofkjhmbabcgjnoklg">
+        <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" width="20" height="20" align="center" alt="Chrome logo"> <strong>Install from the Chrome Web Store</strong>
+    </a>
+</div>
+
+
 
 ## ✨ Features
+Skip the tedious two-click menu process and remove videos with a single click. This extension adds a dedicated **(X)** button directly into the video row.
+
 * **One-Click Removal**: Deletes videos immediately.
 * **Theme Aware**: Adapts to YouTube's Light and Dark modes.
 * **Native Integration**: Blends into the YouTube UI layout.
